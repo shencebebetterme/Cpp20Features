@@ -43,7 +43,7 @@ U add3(T a, U b, V c)
 // define complicated concepts with requires expression
 
 template <typename Iter>
-concept RandomAccessIterator = std::bidirectional_iterator<Iter>
+concept RandomAccessIterator1 = std::bidirectional_iterator<Iter>
 && requires (const Iter i, const Iter j, Iter k, const int n)
 {
 	i + n; i - n; n + i; i[n];    // Required to work on const operands
@@ -52,7 +52,7 @@ concept RandomAccessIterator = std::bidirectional_iterator<Iter>
 };
 
 template<class Iter>
-concept RandomAccessIterator = std::bidirectional_iterator<Iter>
+concept RandomAccessIterator2 = std::bidirectional_iterator<Iter>
 && requires(const Iter i, const Iter j, Iter k, const int n)
 {
 	{ i - n } -> std::same_as<Iter>;
@@ -66,7 +66,7 @@ concept RandomAccessIterator = std::bidirectional_iterator<Iter>
 template<class Container>
 concept RandomAccessContainer = requires (Container c)
 {
-	{ c.begin() } -> RandomAccessIterator;
+	{ c.begin() } -> RandomAccessIterator1;
 	// ...
 };
 
